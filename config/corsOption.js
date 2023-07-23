@@ -1,6 +1,5 @@
 const whitelist = require('./allowedOrigin')
 
-
 // check these whitelist sites by using there respective console
 const corsOption = {
   origin: (origin, callback) => {

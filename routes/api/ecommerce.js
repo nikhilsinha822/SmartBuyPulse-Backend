@@ -3,9 +3,10 @@ const router = express.Router();
 const ecomController = require('../../controllers/ecomController')
 
 router.route('/amazon')
-    .get(ecomController.scrapeAmazon);
+    .post(ecomController.scrapeAmazon);
+    
 router.route('/flipkart')
-    .get(ecomController.scrapeFlipkart);
+    .post(ecomController.scrapeFlipkart);
 
 
 module.exports = router
