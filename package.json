@@ -2,13 +2,16 @@
   "name": "smartbuypulse",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server.js"
   },
   "author": "Nikhil Sinha",
   "license": "ISC",
+  "engines": {
+    "node": "18.14.0"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

@@ -1,4 +1,5 @@
 const amazonObject = {
+    // page=2
     url : 'https://www.amazon.in/',
     async scraper(browser, searchQuery='nothing'){ 
         searchQuery = searchQuery.replace(/ /g,"+");
