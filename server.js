@@ -6,7 +6,6 @@ const corsOption = require("./config/corsOption");
 
 require("dotenv").config();
 
-app.use(require('express-status-monitor')());
 app.use(cors(corsOption));
 
 app.use(express.json());

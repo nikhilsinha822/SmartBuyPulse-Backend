@@ -7,9 +7,9 @@ const scrapeAmazon = async (req, res, next) =>{
     const { searchQuery } = req.body;
     try{
         let browser = await browserObject.startBrowser();
-        await amazonObject.scraper(browser, searchQuery);
+        let result = await amazonObject.scraper(browser, searchQuery);
         await browser.close();
-        return res.status(201).json({"msg": "success", "query": searchQuery});
+        return res.status(201).json({"msg": "success", result});
     } catch(err) {
         console.log('Could not resolve the browser instance = ', err)
         next(err);
@@ -21,7 +21,7 @@ const scrapeFlipkart = async (req, res, next) =>{
     try{
         let browser = await browserObject.startBrowser();
         await flipkartObject.scraper(browser, searchQuery);
-        await browser.close();
+        await browser.close()
         return res.status(201).json({msg: 'success', "query": searchQuery});
     } catch(err) {
         console.log('Could not resolve the browser instance = ', err)
