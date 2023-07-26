@@ -10,7 +10,7 @@
   "author": "Nikhil Sinha",
   "license": "ISC",
   "engines": {
-    "node": "18.14.0"
+    "node": "18.17.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
