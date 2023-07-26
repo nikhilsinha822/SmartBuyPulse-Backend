@@ -3,10 +3,11 @@ const amazonObject = {
     async scraper(browser, searchQuery='nothing'){ 
     try{
         searchQuery = searchQuery.replace(/ /g,"+");
+        console.log("creating new page")
         let page = await browser.newPage();
-        console.log(`Navigating to ${this.url}`);
+        console.log(`Navigating to ${this.url}s?k=${searchQuery}`);
+        await page.setDefaultNavigationTimeout(0); 
         await page.goto(this.url+`s?k=${searchQuery}`, { waitUntil: 'load' });
-        await page.waitForNavigation();
         await page.waitForSelector('.s-image', { visible: true, timeout: 60000 });
 
         const productDetails = await page.evaluate(() => {
@@ -24,6 +25,7 @@ const amazonObject = {
             }
             return details;
           });
+          console.log('closing page');
           await page.close();
           return productDetails;
         } catch (error) {

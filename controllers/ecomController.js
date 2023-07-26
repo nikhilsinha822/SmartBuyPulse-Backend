@@ -8,6 +8,7 @@ const scrapeAmazon = async (req, res, next) =>{
     try{
         let browser = await browserObject.startBrowser();
         let result = await amazonObject.scraper(browser, searchQuery);
+        console.log("closing browser")
         await browser.close();
         return res.status(201).json({"msg": "success", result});
     } catch(err) {
