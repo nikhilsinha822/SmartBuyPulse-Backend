@@ -6,36 +6,29 @@ const amazonObject = {
         let page = await browser.newPage();
         console.log(`Navigating to ${this.url}`);
         await page.goto(this.url+`s?k=${searchQuery}`, { waitUntil: 'domcontentloaded' });
-
-        await page.waitForSelector('.s-image', { visible: true, timeout: 10000 });
+        await page.waitForSelector('.s-result-item');
+        await page.waitForSelector('.s-image', { visible: true, timeout: 50000 });
 
         const productDetails = await page.evaluate(() => {
             const productBlocks = Array.from(document.querySelectorAll('.s-result-item'));
             const details = [];
       
             for (const block of productBlocks) {
-              const nameElement = block.querySelector('h2 span');
-              const priceElement = block.querySelector('.a-price span.a-offscreen');
-              const descriptionElement = block.querySelector('.a-size-base-plus');
-      
-              if (nameElement && priceElement && descriptionElement) {
-                const name = nameElement.textContent.trim();
-                const price = priceElement.textContent.trim();
-                const description = descriptionElement.textContent.trim();
-                const image = block.querySelector('.s-image').src;
-                details.push({ name, price, description, image });
-              }
+              const name = block.querySelector('h2 span')?.textContent?.trim() || "NA";
+              const price = block.querySelector('.a-price span.a-offscreen')?.textContent?.trim() || "NA";
+              const description = block.querySelector('.a-size-base-plus')?.textContent?.trim() || "NA";
+              const image = block.querySelector('.s-image')?.src || "NA";
+              if(name!="NA" && price!="NA" && image!="NA")
+              details.push({ name, price, description, image });   
             }
-      
             return details;
           });
-        //   console.log('Product details:', productDetails);
+          await page.close();
           return productDetails;
         } catch (error) {
           console.error('Error occurred:', error);
           return [];
-      
-    }     
+      }     
     }
 }
 
