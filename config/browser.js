@@ -5,12 +5,13 @@ async function startBrowser(){
     try{
         console.log("Opening the browser........");
         browser = await puppeteer.launch({
-            headless : false,
+            headless : "new",
             args: ["--disable-setuid-sandbox"],
             'ignoreHTTPErrors': true 
         })
     } catch(err){
         console.log("Could not create a browser instance => : ", err);
+        return err
     }
     return browser;
 }

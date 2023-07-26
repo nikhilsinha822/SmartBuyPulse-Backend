@@ -8,7 +8,7 @@ const scrapeAmazon = async (req, res, next) =>{
     try{
         let browser = await browserObject.startBrowser();
         let result = await amazonObject.scraper(browser, searchQuery);
-        await browser.close();
+        await browser?.close();
         return res.status(201).json({"msg": "success", result});
     } catch(err) {
         console.log('Could not resolve the browser instance = ', err)
