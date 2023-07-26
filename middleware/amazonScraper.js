@@ -18,8 +18,9 @@ const amazonObject = {
               const price = block.querySelector('.a-price span.a-offscreen')?.textContent?.trim() || "NA";
               const description = block.querySelector('.a-size-base-plus')?.textContent?.trim() || "NA";
               const image = block.querySelector('.s-image')?.src || "NA";
+              const productURL = block.querySelector('a.a-link-normal')?.href || 'NA';
               if(name!="NA" && price!="NA" && image!="NA")
-              details.push({ name, price, description, image });   
+              details.push({ name, price, description, image, productURL });   
             }
             return details;
           });
