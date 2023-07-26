@@ -12,6 +12,7 @@ const scrapeAmazon = async (req, res, next) =>{
         return res.status(201).json({"msg": "success", result});
     } catch(err) {
         console.log('Could not resolve the browser instance = ', err)
+        res.status(500).send(`Internal Server Error: ${err.message}`);
         next(err);
     }
 }

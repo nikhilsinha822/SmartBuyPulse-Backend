@@ -28,7 +28,7 @@ const amazonObject = {
           return productDetails;
         } catch (error) {
           console.error('Error occurred:', error);
-          return [];
+          return error.message
       }     
     }
 }
