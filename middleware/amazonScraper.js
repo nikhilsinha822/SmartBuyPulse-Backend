@@ -5,9 +5,9 @@ const amazonObject = {
         searchQuery = searchQuery.replace(/ /g,"+");
         let page = await browser.newPage();
         console.log(`Navigating to ${this.url}`);
-        await page.goto(this.url+`s?k=${searchQuery}`, { waitUntil: 'domcontentloaded' });
-
-        await page.waitForSelector('.s-image', { timeout: 60000 });
+        await page.goto(this.url+`s?k=${searchQuery}`, { waitUntil: 'load' });
+        await page.waitForNavigation();
+        await page.waitForSelector('.s-image', { visible: true, timeout: 60000 });
 
         const productDetails = await page.evaluate(() => {
             const productBlocks = Array.from(document.querySelectorAll('.s-result-item'));
