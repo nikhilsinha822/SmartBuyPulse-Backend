@@ -8,7 +8,7 @@ const amazonObject = {
         console.log(`Navigating to ${this.url}s?k=${searchQuery}`);
         await page.setDefaultNavigationTimeout(0); 
         await page.goto(this.url+`s?k=${searchQuery}`, { waitUntil: 'load' });
-        await page.waitForSelector('.s-image', { visible: true, timeout: 60000 });
+        console.log(await page.content());
 
         const productDetails = await page.evaluate(() => {
             const productBlocks = Array.from(document.querySelectorAll('.s-result-item'));
